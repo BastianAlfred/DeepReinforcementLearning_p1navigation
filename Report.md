@@ -1,12 +1,20 @@
 # Deep Reinforcment Learning @ UDACITY --> Project 1 "Navigation"
 
 ### 1. Learning Algorithm
-To solve our "Navigation" task a Deep Q-Learning agent with experience reply is used.\
-The algorithm is explained in the following picture out of the DQN Nature Paper "Human-level control through deep reinforcement learning".
+To solve our "Navigation" task a Deep Q-Learning agent with experience replay is used.\
+The algorithm is explained in the following picture out of the DQN Nature Paper "Human-level control through deep reinforcement learning" whereas the UNITY framework output gives us no picture but a reward r_t and a new state vector s_t+1
 
-![algorithm](algorithm.jpg)
+<img src="algorithm.jpg" />
 
-Our agent improves his choosen actions by exploring (with e-greedy policy) the presented state and choose appropriate action to maximize cumulative reward (due to a high GAMMA value the agent cares mainly for future rewards). 
+
+- At the beginning the replay memory, the action-value function Q ("qnetwork_local" @ dgn_agent) and the target action value function Q_top (qnetwork_target @ dgn_agent) are initialized
+- Iterating through several episodes our agent try to maximize cumulative reward (due to a high GAMMA value the agent cares mainly for future rewards)
+- state space and preprocessed sequences (batches of experiences out of the replay buffer) are initialized
+- As long as the episodic task did not end, the agent selects an action with respect to the e-greedy policy and returns a reward, the new state vector s_t+1 and info if episode ends
+- Next the agent stores the transition (state vectors, action, reward, done) in the replay buffer
+- When enough samples are in the replay buffer (>BATCH_SIZE) and update step is reached @UPDATE_EVERY the agent will do an optimizer step with learning rate LR (by calculating the MSE loss between output of qnetwork_local and qnetwork_target) to update qnetwork_local (agent is learning)
+- Additionaly the qnetwork_target get´s a soft update (θ_target = τ*θ_local + (1 - τ)*θ_target) were TAU represents the interpolation parameter
+- If cummulative reward (score) is > 13.0 over 100 consecutive episodes the environment is succesfully solved and teh episodic task ends
 
 
 Following Hyperparameters were used to train the agent (carry over from previous project "dqn")
@@ -19,7 +27,7 @@ Following Hyperparameters were used to train the agent (carry over from previous
 - LAYERS = 64             # depth of fully connected layers
 
 
-To keep the model architecture lean and to bring not too much complexity in the non linear function approximator for the Q-table a simple neural network with the following architecture is used (carry over from previous project "dqn")
+To keep the model architecture lean and to bring not too much complexity in the non linear function approximator for the Q-table a simple neural network with the following architecture is used (carry over from previous project "dqn"). The hidden layer has dimension (LAYERS, LAYERS)
 - __1__ fully connected __input layer__ with ReLu activation function 
 - __1__ fully connected  __hidden layer__ with ReLu activation function 
 - __1__ fully connected __output layer__
@@ -28,7 +36,7 @@ To keep the model architecture lean and to bring not too much complexity in the 
 ### 2. Plot rewards
 Here you can see the progress of rewards the agent collects over several episodes.
 
-![reward](reward.jpg)
+<img src="reward.jpg" />
 
 Episode 100	Average Score: 0.92\
 Episode 200	Average Score: 3.99\
