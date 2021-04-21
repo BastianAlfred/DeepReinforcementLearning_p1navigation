@@ -32,4 +32,7 @@ The repo contain´s 3 mandatory files for our agent
 - "Main.ipynb": This is the main jupyter notebook to run
 - "dqn_agent": Definition of our deep Q-Learning agent
 - "dqn_model": Definition of our deep Q-Learning model
-    
+
+The files "*_Pixel" are currently not running...
+
+<img src="error.jpg" />

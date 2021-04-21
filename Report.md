@@ -24,13 +24,13 @@ Following Hyperparameters were used to train the agent (carry over from previous
 - TAU = 0.001             # for soft update of target parameters
 - LR = 0.0005             # learning rate 
 - UPDATE_EVERY = 4        # how often to update the network
-- LAYERS = 64             # depth of fully connected layers
+- LAYERS = 64             # depth of fully connected hidden layers
 
 
 To keep the model architecture lean and to bring not too much complexity in the non linear function approximator for the Q-table a simple neural network with the following architecture is used (carry over from previous project "dqn"). The hidden layer has dimension (LAYERS, LAYERS)
-- __1__ fully connected __input layer__ with ReLu activation function 
-- __1__ fully connected  __hidden layer__ with ReLu activation function 
-- __1__ fully connected __output layer__
+- __1__ fully connected __input layer__ (input_size = __state_size__, output_size = LAYERS) with ReLu activation function 
+- __1__ fully connected  __hidden layer__ (input_size = LAYERS, output_size = LAYERS) with ReLu activation function 
+- __1__ fully connected __output layer__ (input_size = LAYERS, output_size = __action_size__)
 
 
 ### 2. Plot rewards
@@ -38,13 +38,12 @@ Here you can see the progress of rewards the agent collects over several episode
 
 <img src="reward.jpg" />
 
-Episode 100	Average Score: 0.92\
-Episode 200	Average Score: 3.99\
-Episode 300	Average Score: 6.98\
-Episode 400	Average Score: 10.17\
-Episode 500	Average Score: 12.55\
-Episode 524	Average Score: 13.06\
-Environment solved in 424 episodes!	Average Score: 13.06
+Episode 100	Average Score: 0.99<br>
+Episode 200	Average Score: 4.55<br>
+Episode 300	Average Score: 7.60<br>
+Episode 400	Average Score: 10.73<br>
+Episode 466	Average Score: 13.01<br>
+Environment solved in 466 episodes!	Average Score: 13.01
 
 ### 3. Ideas for future Work
 To imporve the agents learning performance the following can be done:

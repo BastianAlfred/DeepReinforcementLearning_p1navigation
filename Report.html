@@ -14261,7 +14261,7 @@ a.anchor-link {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Deep-Reinforcment-Learning-@-UDACITY---&gt;-Project-1-&quot;Navigation&quot;">Deep Reinforcment Learning @ UDACITY --&gt; Project 1 "Navigation"<a class="anchor-link" href="#Deep-Reinforcment-Learning-@-UDACITY---&gt;-Project-1-&quot;Navigation&quot;">&#182;</a></h1><h3 id="1.-Learning-Algorithm">1. Learning Algorithm<a class="anchor-link" href="#1.-Learning-Algorithm">&#182;</a></h3><p>To solve our "Navigation" task a Deep Q-Learning agent with experience replay is used.\
 The algorithm is explained in the following picture out of the DQN Nature Paper "Human-level control through deep reinforcement learning" whereas the UNITY framework output gives us no picture but a reward r_t and a new state vector s_t+1</p>
-<p><img src="algorithm.jpg" alt="algorithm"></p>
+<p><img src="algorithm.jpg" /></p>
 <ul>
 <li>At the beginning the replay memory, the action-value function Q ("qnetwork_local" @ dgn_agent) and the target action value function Q_top (qnetwork_target @ dgn_agent) are initialized</li>
 <li>Iterating through several episodes our agent try to maximize cumulative reward (due to a high GAMMA value the agent cares mainly for future rewards)</li>
@@ -14280,25 +14280,22 @@ The algorithm is explained in the following picture out of the DQN Nature Paper 
 <li>TAU = 0.001             # for soft update of target parameters</li>
 <li>LR = 0.0005             # learning rate </li>
 <li>UPDATE_EVERY = 4        # how often to update the network</li>
-<li>LAYERS = 64             # depth of fully connected layers</li>
+<li>LAYERS = 64             # depth of fully connected hidden layers</li>
 </ul>
 <p>To keep the model architecture lean and to bring not too much complexity in the non linear function approximator for the Q-table a simple neural network with the following architecture is used (carry over from previous project "dqn"). The hidden layer has dimension (LAYERS, LAYERS)</p>
 <ul>
-<li><strong>1</strong> fully connected <strong>input layer</strong> with ReLu activation function </li>
-<li><strong>1</strong> fully connected  <strong>hidden layer</strong> with ReLu activation function </li>
-<li><strong>1</strong> fully connected <strong>output layer</strong></li>
+<li><strong>1</strong> fully connected <strong>input layer</strong> (input_size = <strong>state_size</strong>, output_size = LAYERS) with ReLu activation function </li>
+<li><strong>1</strong> fully connected  <strong>hidden layer</strong> (input_size = LAYERS, output_size = LAYERS) with ReLu activation function </li>
+<li><strong>1</strong> fully connected <strong>output layer</strong> (input_size = LAYERS, output_size = <strong>action_size</strong>)</li>
 </ul>
 <h3 id="2.-Plot-rewards">2. Plot rewards<a class="anchor-link" href="#2.-Plot-rewards">&#182;</a></h3><p>Here you can see the progress of rewards the agent collects over several episodes.</p>
-<p><img src="reward.jpg" alt="reward"></p>
-<ul>
-<li>Episode 100   Average Score: 0.92</li>
-<li>Episode 200   Average Score: 3.99</li>
-<li>Episode 300   Average Score: 6.98</li>
-<li>Episode 400   Average Score: 10.17</li>
-<li>Episode 500   Average Score: 12.55</li>
-<li>Episode 524   Average Score: 13.06</li>
-<li>Environment solved in 424 episodes!   Average Score: 13.06</li>
-</ul>
+<p><img src="reward.jpg" /></p>
+<p>Episode 100 Average Score: 0.99<br>
+Episode 200 Average Score: 4.55<br>
+Episode 300 Average Score: 7.60<br>
+Episode 400 Average Score: 10.73<br>
+Episode 466 Average Score: 13.01<br>
+Environment solved in 466 episodes! Average Score: 13.01</p>
 <h3 id="3.-Ideas-for-future-Work">3. Ideas for future Work<a class="anchor-link" href="#3.-Ideas-for-future-Work">&#182;</a></h3><p>To imporve the agents learning performance the following can be done:</p>
 <ul>
 <li>a further detailled scan of the choosen hyperparameters</li>
@@ -14309,20 +14306,6 @@ The algorithm is explained in the following picture out of the DQN Nature Paper 
 </ul>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
 </div>
 </body>
 
